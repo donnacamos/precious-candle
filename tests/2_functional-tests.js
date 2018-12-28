@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = chai.assert;
 
 var server = require('../server');    /** import the Express app **/
-
+var express = require('express');
 var chaiHttp = require('chai-http');  /** require the chai-http plugin **/
 chai.use(chaiHttp);                   /** use the chai-http plugin **/
 
@@ -13,7 +13,7 @@ suite('Functional Tests', function() {
   // There is a small (BIG) difference. Can you spot it ?
   
   // ### EXAMPLE ### 
-  test('Asynchronous test #example', function(done){ /** <= Pass a callback to the test function **/
+  test('TEST GET /hello with your name', function(done){ /** <= Pass a callback to the test function **/
     setTimeout(function(){
       assert.isOk('Async test !!');
       done(); /** Call 'done()' when the async operation is completed**/
