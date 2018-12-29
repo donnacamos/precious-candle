@@ -30,15 +30,15 @@ suite('Functional Tests', function() {
     // ### EXAMPLE ### 
     suite('GET /hello?name=[name] => "hello [name]"', function(){
       // We send a name string in the url query string.
-      test('#example - ?name=John',  function(done){   // Don't forget the callback...
+      test('#example - ?name=Donna',  function(done){   // Don't forget the callback...
          chai.request(server)             // 'server' is the Express App
-          .get('/hello?name=John')        // http_method(url)
+          .get('/hello?name=Donna')        // http_method(url)
           .end(function(err, res){        // Send the request. Pass a callback in
                                           // node style. `res` is the response object
             // res.status contains the status code
             assert.equal(res.status, 200, 'response status should be 200');
             // res.text contains the response as a string
-            assert.equal(res.text, 'hello John', 'response should be "hello John"');
+            assert.equal(res.text, 'hello Donna', 'response should be "hello Donna"');
             done();
           });
       });
@@ -47,16 +47,16 @@ suite('Functional Tests', function() {
        * Replace assert.fail(). Make the test pass. **/
        
       // If no name is passed, the endpoint responds with 'hello Guest'.
-      test('Test GET /hello with no name',  function(done){ // Don't forget the callback...
+      test('Test GET /hello with your name',  function(done){ // Don't forget the callback...
          chai.request(server)             // 'server' is the Express App
-          .get('/hello')                  // http_method(url). NO NAME in the query !
+          .get('/hello?name=Donna')                  // http_method(url). NO NAME in the query !
           .end(function(err, res){        // res is the response object
           
             // Test the status and the text response (see the example above). 
             // Please follow the order -status, -text. We rely on that in our tests.
             // It should respond 'Hello Guest'
-            assert.fail(res.status, 200);
-            assert.fail(res.text, 'hello Guest');
+            assert.isEqual('res.status'==200);
+            assert.isEqual('res.text'=='hello Donna');
             done();   // Always call the 'done()' callback when finished.
           });
       });
